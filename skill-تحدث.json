@@ -1,0 +1,264 @@
+{
+  "intents": [
+    {
+      "intent": "informaion_robot",
+      "examples": [
+        {
+          "text": "بيانات هذا الروبوت"
+        },
+        {
+          "text": "شرح لهذا الروبوت"
+        },
+        {
+          "text": "معلومات عن الروبوت"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "التواصل",
+      "examples": [
+        {
+          "text": "طرق التواصل مع الشركه"
+        },
+        {
+          "text": "كيف اقدر اتواصل مع الدعم"
+        },
+        {
+          "text": "ممكن اتواصل مع الدعم الفني"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "تاريخ_صنعه",
+      "examples": [
+        {
+          "text": "تاريخ صنع الروبوت"
+        },
+        {
+          "text": "متى تم نصعه"
+        },
+        {
+          "text": "متى صنع الروبوت"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "ترحيب",
+      "examples": [
+        {
+          "text": "السلام عليكم"
+        },
+        {
+          "text": "اهلا"
+        },
+        {
+          "text": "مرحبا"
+        },
+        {
+          "text": "هلا"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "صوره_للروبوت",
+      "examples": [
+        {
+          "text": "صوره للروبوت"
+        },
+        {
+          "text": "ممكن اشوف نموذج لهذا الروبوت"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "informaion_robot",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "معلومات",
+          "synonyms": [
+            "تخص الروبوت",
+            "شرح",
+            "شرح للروبوت"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "صوره",
+      "output": {
+        "generic": [
+          {
+            "title": "صوره توضيحيه للروبوت",
+            "source": "https://i.imgur.com/We89kQ4.jpg",
+            "response_type": "image"
+          }
+        ]
+      },
+      "conditions": "#صوره_للروبوت",
+      "dialog_node": "node_2_1625277515873",
+      "previous_sibling": "node_8_1625278043803"
+    },
+    {
+      "type": "standard",
+      "title": "ترحيب",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "اهلا كيف استطيع خدمتك"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "conditions": "#ترحيب",
+      "dialog_node": "node_5_1625268813613",
+      "previous_sibling": "node_6_1625277781993"
+    },
+    {
+      "type": "standard",
+      "title": "تاريخ الصنع",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "صنع في شهر 1422/11هـ"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#تاريخ_صنعه",
+      "dialog_node": "node_6_1625277781993",
+      "previous_sibling": "node_2_1625277515873"
+    },
+    {
+      "type": "standard",
+      "title": "informaion_robot",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "هذا الروبوت مختص في القتال ويتم التحكم فيه عن طريق لوحه التحكم هذه لتحريكه في جميع الاتجاهات والزوايا وتم تصنيعه في شركه الاساليب الذكية "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#informaion_robot",
+      "dialog_node": "node_7_1625278530860",
+      "previous_sibling": "مرحبا"
+    },
+    {
+      "type": "standard",
+      "title": "التواصل",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "لخدمتك بشكل افضل تواصل معنا على هذا الايميل: smart@ gmail.com\n\n او على هذا الرقم :055000000"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "multiline"
+          }
+        ]
+      },
+      "conditions": "#التواصل",
+      "dialog_node": "node_8_1625278043803",
+      "previous_sibling": "node_7_1625278530860"
+    },
+    {
+      "type": "standard",
+      "title": "أي شيء آخر",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "لم أفهم، يمكنك محاولة اعادة الصياغة"
+              },
+              {
+                "text": "هل يمكنك اعادة صياغة عبارتك؟ أنا لا فهم"
+              },
+              {
+                "text": "لم أفهم قصدك"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "أي شيء آخر",
+      "previous_sibling": "node_5_1625268813613",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "مرحبا",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "مرحبا"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "مرحبا"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "disambiguation": {
+      "prompt": ":هل قصدت",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "كل ما سبق خطأ"
+    },
+    "human_agent_assist": {
+      "prompt": ":هل قصدت"
+    }
+  },
+  "learning_opt_out": false,
+  "name": "تحدث",
+  "language": "ar",
+  "description": ""
+}
